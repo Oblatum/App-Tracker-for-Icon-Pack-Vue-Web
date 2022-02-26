@@ -1,8 +1,10 @@
 <template>
   <div id="info">
+    <a style="font-weight: bold; margin-left: 8px; font-size: 1.5rem">
+      {{ appName }}
+    </a>
     <n-space vertical align="start">
       <div style="display: flex">
-        <NImage :src="appIcon" width="50" height="50" />
         <div
           style="
             display: flex;
@@ -11,50 +13,38 @@
             flex-wrap: nowrap;
           "
         >
-          <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
+          <!-- <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
             >ID:
             <n-tag style="font-weight: normal" checkable @click="copyItem(0)">{{
               id
             }}</n-tag>
-          </a>
-          <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
-            >应用名称：<n-tag
-              style="font-weight: normal"
-              checkable
-              @click="copyItem(1)"
-              >{{ appName }}</n-tag
-            ></a
-          >
+          </a>-->
         </div>
       </div>
-      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
-        >包名：<n-tag
-          style="font-weight: normal"
-          checkable
-          @click="copyItem(2)"
-          >{{ packageName }}</n-tag
-        >
+      <a style="font-weight: bold; margin-left: 8px">
+        包名：
+        <n-tag style="font-weight: normal" checkable @click="copyItem(2)">
+          {{ packageName }}
+        </n-tag>
       </a>
-      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
-        >启动项名：<n-tag
-          style="font-weight: normal"
-          checkable
-          @click="copyItem(3)"
-          >{{ activityName }}</n-tag
-        >
+      <div style="display: flex">
+        <a style="font-weight: bold; margin-left: 8px; white-space: nowrap">
+          启动项名：
+        </a>
+        <n-tag style="font-weight: normal" checkable @click="copyItem(3)">
+          {{ activityName }}
+        </n-tag>
+      </div>
+
+      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap">
+        类别：
+        <n-tag style="font-weight: normal" checkable @click="copyItem(4)">
+          {{ signature }}
+        </n-tag>
       </a>
-      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
-        >类别：<n-tag
-          style="font-weight: normal"
-          checkable
-          @click="copyItem(4)"
-          >{{ signature }}</n-tag
-        >
-      </a>
-      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap"
-        >申请次数：<n-tag style="font-weight: normal" checkable>{{
-          count
-        }}</n-tag>
+      <a style="font-weight: bold; margin-left: 8px; white-space: nowrap">
+        申请次数：
+        <n-tag style="font-weight: normal" checkable>{{ count }}</n-tag>
       </a>
     </n-space>
     <n-button :style="{ 'align-self': 'flex-end' }" @click="copyAll"
@@ -162,6 +152,14 @@ export default defineComponent({
 })
 </script>
 
+<style>
+.n-tag__content {
+  white-space: pre-wrap;
+  word-break: break-all;
+  text-align: justify;
+}
+</style>
+
 <style scoped>
 #info {
   background-color: #fff;
@@ -170,5 +168,13 @@ export default defineComponent({
   padding: 16px;
   margin: 16px;
   flex-direction: column;
+  width: 300px;
+}
+
+@media (max-width: 768px) {
+  #info {
+    width: auto;
+    max-width: 90%;
+  }
 }
 </style>
